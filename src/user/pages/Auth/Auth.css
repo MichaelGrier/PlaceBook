@@ -1,0 +1,15 @@
+.authentication {
+  width: 90%;
+  max-width: 45rem;
+  margin: 7rem auto;
+  padding: 1rem 2rem 2rem 2rem;
+  text-align: center;
+}
+
+.authentication__button-wrap {
+  margin: 1rem 0 0 1rem;
+}
+
+.authentication form {
+  margin-bottom: 1rem;
+}
