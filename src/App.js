@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -6,15 +6,22 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Users from './user/pages//Users/Users';
-import Auth from './user/pages/Auth/Auth';
-import NewPlace from './places/pages/NewPlace/NewPlace';
-import UserPlaces from './places/pages/UserPlaces/UserPlaces';
-import UpdatePlace from './places/pages/UpdatePlace/UpdatePlace';
 import MainNavigation from './shared/components/Navigation/MainNavigation/MainNavigation';
 import Footer from './shared/components/Footer/Footer';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner/LoadingSpinner';
+
+// load routes lazily
+const Users = React.lazy(() => import('./user/pages//Users/Users'));
+const NewPlace = React.lazy(() => import('./places/pages/NewPlace/NewPlace'));
+const UserPlaces = React.lazy(() =>
+  import('./places/pages/UserPlaces/UserPlaces')
+);
+const UpdatePlace = React.lazy(() =>
+  import('./places/pages/UpdatePlace/UpdatePlace')
+);
+const Auth = React.lazy(() => import('./user/pages/Auth/Auth'));
 
 const App = () => {
   const { token, login, logout, userId, userEmail } = useAuth();
@@ -71,7 +78,17 @@ const App = () => {
     >
       <Router>
         <MainNavigation currentUser={userEmail} />
-        <main>{routes}</main>
+        <main>
+          <Suspense
+            fallback={
+              <div className="center">
+                <LoadingSpinner />
+              </div>
+            }
+          >
+            {routes}
+          </Suspense>
+        </main>
         <Footer>Developed by Michael Grier &copy; 2021</Footer>
       </Router>
     </AuthContext.Provider>

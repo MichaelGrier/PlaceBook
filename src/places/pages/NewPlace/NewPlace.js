@@ -56,9 +56,14 @@ const NewPlace = () => {
       formData.append('image', formState.inputs.image.value);
 
       // send object to the server with auth token attached
-      await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
-        Authorization: 'Bearer ' + auth.token,
-      });
+      await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + '/places',
+        'POST',
+        formData,
+        {
+          Authorization: 'Bearer ' + auth.token,
+        }
+      );
 
       // redirect to home
       history.push('/');
