@@ -1,5 +1,5 @@
 # PlaceBook
-This is the Frontend for a full-stack MERN application that I created, which allows users to upload and share photos and information about places that they have visited. This is a single-page web application written in ReactJs.
+This is the frontend for a full-stack MERN application that I created, which allows users to upload and share photos and information about places that they have visited. You can access the full project at: https://placebook-305917.web.app/
 
 ### What I Learned:
 - Lazy loading routes for increased performance.
