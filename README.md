@@ -5,3 +5,4 @@ This is the frontend for a full-stack MERN application that I created, which all
 - Lazy loading routes for increased performance.
 - Creating custom React hooks for cleaner, more modular code.
 - Utilizing the useRef and useCallback hooks.
+- Using the Context api to manage global state.
